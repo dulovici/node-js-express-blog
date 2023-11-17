@@ -10,7 +10,6 @@ const app = express();
 const db_URI = "mongodb+srv://blog-user:blog-user@cluster0.lvzqcjf.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(db_URI)
 .then((results) => {
-  // listen for requests
   app.listen(3000); 
 })
 .catch((err) => console.log(err))
@@ -23,12 +22,8 @@ app.use(express.static("public"))
 app.use(express.urlencoded({extended:true}))
 app.use(morgan("dev"))
 
-
-
-//routes=====================================================================
-//blog routes
+//routes
 app.use("/blogs", blogRoutes)
-
 
 app.get('/', (req, res) => {
   res.redirect('/blogs');
@@ -38,7 +33,6 @@ app.get('/about', (req, res) => {
   res.render('about', { title: 'About' });
 });
 
-//routes=====================================================================
 
 // 404 page
 app.use((req, res) => {
