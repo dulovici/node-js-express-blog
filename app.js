@@ -1,5 +1,15 @@
 const express = require('express');
 const morgan = require("morgan");
+const mongoose = require("mongoose")
+
+//conect to mongo db
+const db_URI = "mongodb+srv://blog-user:blog-user@cluster0.lvzqcjf.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(db_URI)
+.then((results) => {
+  // listen for requests
+  app.listen(3000); 
+})
+.catch((err) => console.log(err))
 
 // express app
 const app = express();
@@ -7,8 +17,7 @@ const app = express();
 // register view engine
 app.set('view engine', 'ejs');
 
-// listen for requests
-app.listen(3000);
+
 
 
 //midlewears
